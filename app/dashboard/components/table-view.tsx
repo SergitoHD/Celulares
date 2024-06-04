@@ -35,8 +35,8 @@ export function TableView({ items, getItems, deleteItem, isLoading }: TableViewP
                         <TableHead className="w-[100px]">Imagen</TableHead>
                         <TableHead>Nombre</TableHead>
                         <TableHead>Precio</TableHead>
-                        <TableHead>Unidades vendidas</TableHead>
-                        <TableHead>Ganancias</TableHead>
+                        <TableHead>Cantidad</TableHead>
+                        {/* <TableHead>Ganancias</TableHead> */}
                         <TableHead className="text-center w-[250px]">Acciones</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -54,8 +54,8 @@ export function TableView({ items, getItems, deleteItem, isLoading }: TableViewP
                             </TableCell>
                             <TableCell className="font-semibold w-[350px]">{item.name}</TableCell>
                             <TableCell>{formatPrice(item.price)}</TableCell>
-                            <TableCell>{item.soldUnits}</TableCell>
-                            <TableCell>{formatPrice(item.soldUnits * item.price)}</TableCell>
+                            <TableCell>{item.quantity}</TableCell>
+                            {/* <TableCell>{formatPrice(item.soldUnits * item.price)}</TableCell> */}
                             <TableCell className="text-center">
                                 <CreateUpdateItem getItems={getItems} itemToUpdate={item}>
                                     <Button>

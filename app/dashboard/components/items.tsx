@@ -21,7 +21,7 @@ const Items = () => {
     const [isLoading, setisLoading] = useState<boolean>(true)
 
     const getItems = async () => {
-        const path = `users/${user?.uid}/products`
+        const path = `productos`
         const query = [
             orderBy('createdAt', 'desc')
             // where('price','==',4000)
@@ -40,7 +40,7 @@ const Items = () => {
 
     //Borrar producto
     const deleteItem = async (item: Product) => {
-        const path = `users/${user?.uid}/products/${item.id}`;
+        const path = `productos/${item.id}`;
         setisLoading(true);
         try {
             await deleteDocument(path);
@@ -54,9 +54,9 @@ const Items = () => {
         }
     }
 
-    const getProfits = () => {
-        return items.reduce((index, item) => index + item.price * item.soldUnits, 0)
-    }
+    // const getProfits = () => {
+    //     return items.reduce((index, item) => index + item.price * item.soldUnits, 0)
+    // }
 
     useEffect(() => {
         if (user) getItems();
@@ -68,11 +68,11 @@ const Items = () => {
             <div className="flex justify-between items-center m-4 mb-8">
                 <div>
                     <h1 className="text-2xl ml-1">Mis productos</h1>
-                    {items.length>0&&
+                    {/* {items.length>0&&
                     <Badge className="mt-2 text-[14px]" 
                     variant={"outline"}>
                         Ganancias Totales: {formatPrice(getProfits())}    
-                    </Badge>}
+                    </Badge>} */}
                 </div>
 
                 <CreateUpdateItem getItems={getItems}>

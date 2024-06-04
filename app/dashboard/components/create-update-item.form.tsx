@@ -50,7 +50,7 @@ export function CreateUpdateItem({children, itemToUpdate, getItems}:CreateUpdate
             message: 'Debe contener al menos 4 caracteres'
         }),
         price: z.coerce.number().gte(0,"El valor mínimo debe ser 0"),
-        soldUnits: z.coerce.number().gte(0,"El valor mínimo debe ser 0")
+        quantity: z.coerce.number().gte(0,"El valor mínimo debe ser 0")
     })
 
     const form = useForm<z.infer<typeof formSquema>>({
@@ -59,7 +59,7 @@ export function CreateUpdateItem({children, itemToUpdate, getItems}:CreateUpdate
             image: { } as ItemImage,
             name: '',
             price: undefined,
-            soldUnits: undefined
+            quantity: undefined
         }
     })
 
@@ -86,7 +86,7 @@ export function CreateUpdateItem({children, itemToUpdate, getItems}:CreateUpdate
     }
     //Crear un producto en la base de datos de Firebase
     const createItem = async (item: Product) => {
-        const path = `users/${user?.uid}/products`;
+        const path = `productos`;
         setisLoading(true);
         try {
             const base64 = item.image.url;
@@ -108,7 +108,7 @@ export function CreateUpdateItem({children, itemToUpdate, getItems}:CreateUpdate
 
     //Actualizar producto
     const updateItem = async (item: Product) => {
-        const path = `users/${user?.uid}/products/${itemToUpdate?.id}`;
+        const path = `productos/${itemToUpdate?.id}`;
         setisLoading(true);
         try {
             if(itemToUpdate?.image.url !== item.image.url){
@@ -195,17 +195,17 @@ export function CreateUpdateItem({children, itemToUpdate, getItems}:CreateUpdate
                             <p className="form-error">{errors.price?.message}</p>
                         </div>
 
-                        {/* ============================ Unidades vendidas ======================= */}
+                        {/* ============================ Cantidad ======================= */}
                         <div className="mb-3">
-                            <Label htmlFor="soldUnits">Unidades vendidas</Label>
+                            <Label htmlFor="quantity">Cantidad</Label>
                             <Input
-                                {...register("soldUnits")}
-                                id="soldUnits"
+                                {...register("quantity")}
+                                id="quantity"
                                 placeholder="0"
                                 step="1"
                                 type="number"
                             />
-                            <p className="form-error">{errors.soldUnits?.message}</p>
+                            <p className="form-error">{errors.quantity?.message}</p>
                         </div>
 
                         {/* ============================ Ingresar ======================= */}

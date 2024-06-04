@@ -6,7 +6,7 @@ export interface Product{
     image: ItemImage;
     name: string;
     price: number;
-    soldUnits: number;
+    quantity: number;
     createdAt?: Timestamp;
 }
 
